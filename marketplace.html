@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketplace — Temelyos</title>
+<meta name="description" content="Modules that plug straight into your platform — choose one, upload your own, or generate one from a prompt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F3EE}
+.chip{padding:8px 16px;border-radius:99px;font-size:13.5px;font-weight:600;cursor:pointer;border:1.5px solid #D8D2C7;background:transparent;color:#55524C;font-family:'Instrument Sans',sans-serif}
+.chip.active{background:#1C1B1A;color:#F6F3EE;border-color:#1C1B1A}
+.mcard{background:#FFFFFF;border:1px solid #E4DFD6;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s,box-shadow .15s}
+.mcard:hover{border-color:#1C1B1A;box-shadow:0 6px 18px rgba(28,27,26,.08)}
+input:focus{border-color:#1C1B1A !important}
+</style>
+</head>
+<body>
+<div style="min-height:100vh;background:#F6F3EE;font-family:'Instrument Sans',sans-serif;color:#1C1B1A">
+
+  <!-- nav -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:2px solid #1C1B1A">
+    <a href="index.html" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:#1C1B1A">
+      <span style="display:flex;flex-direction:column;align-items:center"><span style="width:16px;height:16px;border-radius:50%;border:2.5px solid #2DD4BF;display:block"></span><span style="width:22px;height:2.5px;background:#2DD4BF;display:block;margin-top:2px"></span></span>
+      <img src="assets/wordmark-charcoal.svg" alt="Temelyos" style="height:15px;display:block">
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+      <a href="platform.html" style="color:#1C1B1A;text-decoration:none">Platform</a>
+      <a href="marketplace.html" style="color:#1C1B1A;text-decoration:none;border-bottom:2px solid #2DD4BF;padding-bottom:2px">Marketplace</a>
+      <span style="color:#8A857C">Docs</span>
+      <a href="sign-in.html" style="background:#1C1B1A;color:#F6F3EE;padding:9px 20px;font-weight:600;font-size:13.5px;text-decoration:none">Sign in ↗</a>
+    </div>
+  </div>
+
+  <!-- header -->
+  <div style="padding:64px 48px 36px;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:18px;box-sizing:border-box">
+    <h1 style="margin:0;font-size:46px;line-height:1.06;font-weight:600;letter-spacing:-.025em">Marketplace</h1>
+    <p style="margin:0;font-size:16.5px;line-height:1.6;color:#55524C;max-width:600px">Modules that plug straight into your platform — wired into auth, tenants, and permissions on install. Choose one, upload your own, or generate one from a prompt.</p>
+    <div style="display:flex;gap:12px;margin-top:8px">
+      <input id="q" placeholder="Search modules…" style="flex:1;max-width:440px;height:48px;border:1.5px solid #1C1B1A;border-radius:99px;padding:0 22px;font-size:15px;font-family:'Instrument Sans',sans-serif;background:#FFFFFF;color:#1C1B1A;outline:none">
+      <a href="sign-in.html#signup" style="display:flex;align-items:center;background:#1C1B1A;color:#F6F3EE;padding:0 24px;border-radius:99px;font-weight:600;font-size:14px;text-decoration:none">Upload a module</a>
+    </div>
+  </div>
+
+  <!-- generate + custom build panels -->
+  <div style="max-width:1080px;margin:0 auto;padding:0 48px 36px;display:grid;grid-template-columns:1fr 1fr;gap:16px;box-sizing:border-box">
+    <div style="border:1.5px dashed #2DD4BF;background:#FFFDF9;border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px">
+      <span style="font-size:22px;color:#2DD4BF;flex:none">✦</span>
+      <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+        <div style="font-weight:600;font-size:15.5px">Don't see what you need? Generate it.</div>
+        <div style="color:#8A857C;font-style:italic;font-family:'Instrument Serif',serif;font-size:15px">"A vendor-onboarding tracker with approval steps…"</div>
+      </div>
+      <span style="background:#2DD4BF;color:#0A1A17;padding:11px 22px;border-radius:99px;font-weight:600;font-size:13.5px;flex:none;cursor:pointer">Try the assistant</span>
+    </div>
+    <div style="border:1.5px solid #1C1B1A;background:#FFFFFF;border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px">
+      <span style="display:flex;flex-direction:column;align-items:center;flex:none"><span style="width:18px;height:18px;border-radius:50%;border:3px solid #1C1B1A;display:block"></span><span style="width:26px;height:3px;background:#1C1B1A;display:block;margin-top:3px"></span></span>
+      <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+        <div style="font-weight:600;font-size:15.5px">Have bigger ideas? Let's build it together.</div>
+        <div style="font-size:13.5px;color:#8A857C;line-height:1.5">Custom module development by the Temelyos team.</div>
+      </div>
+      <a href="contact.html" style="border:1.5px solid #1C1B1A;color:#1C1B1A;padding:10px 22px;border-radius:99px;font-weight:600;font-size:13.5px;flex:none;text-decoration:none">Talk to us</a>
+    </div>
+  </div>
+
+  <!-- filters + grid -->
+  <div style="max-width:1080px;margin:0 auto;padding:0 48px 72px;display:flex;flex-direction:column;gap:22px;box-sizing:border-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E0DBD1;padding-top:22px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="chip active" data-cat="All">All</button>
+        <button class="chip" data-cat="Support">Support</button>
+        <button class="chip" data-cat="Analytics">Analytics</button>
+        <button class="chip" data-cat="Communications">Communications</button>
+        <button class="chip" data-cat="Operations">Operations</button>
+        <button class="chip" data-cat="Sales">Sales</button>
+        <button class="chip" data-cat="Finance">Finance</button>
+      </div>
+      <div id="count" style="font-size:13px;color:#8A857C">9 modules</div>
+    </div>
+
+    <div id="grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+
+      <div class="mcard" data-cat="Support" data-text="helpdesk ticket queues, slas, and customer threads for support teams. support">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">H</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Helpdesk</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Ticket queues, SLAs, and customer threads for support teams.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Support</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Analytics" data-text="report studio drag-and-drop dashboards and scheduled reports over tenant data. analytics">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">R</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Report Studio</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Drag-and-drop dashboards and scheduled reports over tenant data.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Analytics</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Communications" data-text="switchboard telephony, call routing, and voicemail-to-text. communications">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">S</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Switchboard</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Telephony, call routing, and voicemail-to-text.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Communications</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Operations" data-text="audit trail immutable activity log across every module and tenant. operations">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">A</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Audit Trail</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Immutable activity log across every module and tenant.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Operations</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Operations" data-text="scheduler shift planning, calendars, and resource booking. operations">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">S</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Scheduler</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Shift planning, calendars, and resource booking.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Operations</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Sales" data-text="crm lite contacts, pipelines, and follow-ups without the bloat. sales">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">C</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">CRM Lite</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Contacts, pipelines, and follow-ups without the bloat.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Sales</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Finance" data-text="invoicing quotes, invoices, and payment status synced to your accounts. finance">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">I</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Invoicing</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Quotes, invoices, and payment status synced to your accounts.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Finance</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Support" data-text="knowledge base internal articles and runbooks, searchable from every tab. support">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">K</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Knowledge Base</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Internal articles and runbooks, searchable from every tab.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Support</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+      <div class="mcard" data-cat="Operations" data-text="inventory stock levels, locations, and reorder alerts in real time. operations">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">I</span>
+          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Inventory</div>
+          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Stock levels, locations, and reorder alerts in real time.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
+          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Operations</span>
+          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="empty" style="display:none;text-align:center;padding:48px;color:#8A857C;font-size:15px">No modules match your search — try the assistant and generate it instead.</div>
+  </div>
+
+  <!-- CTA / footer -->
+  <div style="background:#1C1B1A;color:#F6F3EE;padding:56px 48px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
+    <div style="font-size:28px;font-weight:600;letter-spacing:-.02em;max-width:560px">Built something useful? Publish it.</div>
+    <div style="font-size:14.5px;color:#9BA6A2;max-width:480px;line-height:1.6">Publish your native module to the marketplace and reach every Temelyos workspace.</div>
+    <a href="sign-in.html#signup" style="background:#2DD4BF;color:#0A1A17;padding:13px 28px;border-radius:99px;font-weight:600;font-size:14.5px;text-decoration:none">Become a publisher</a>
+    <div style="display:flex;gap:26px;font-size:13px;color:#8A857C;margin-top:14px">
+      <a href="platform.html" style="color:#8A857C;text-decoration:none">Platform</a>
+      <a href="marketplace.html" style="color:#8A857C;text-decoration:none">Marketplace</a>
+      <span>Docs</span>
+      <a href="contact.html" style="color:#8A857C;text-decoration:none">Contact</a>
+      <a href="sign-in.html" style="color:#8A857C;text-decoration:none">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.mcard'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var q = document.getElementById('q');
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var cat = 'All';
+  function apply() {
+    var query = q.value.toLowerCase();
+    var n = 0;
+    cards.forEach(function (c) {
+      var show = (cat === 'All' || c.getAttribute('data-cat') === cat) &&
+                 (!query || c.getAttribute('data-text').indexOf(query) !== -1);
+      c.style.display = show ? 'flex' : 'none';
+      if (show) n++;
+    });
+    count.textContent = n + (n === 1 ? ' module' : ' modules');
+    empty.style.display = n ? 'none' : 'block';
+  }
+  chips.forEach(function (ch) {
+    ch.addEventListener('click', function () {
+      cat = ch.getAttribute('data-cat');
+      chips.forEach(function (x) { x.classList.toggle('active', x === ch); });
+      apply();
+    });
+  });
+  q.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>

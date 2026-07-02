@@ -237,13 +237,25 @@ input:focus{border-color:#1C1B1A !important}
 
 <script>
 (function () {
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.mcard'));
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  // The ONE deployment knob: your management-server origin (where the platform
+  // API lives). The catalog route is public + CORS '*', so a plain fetch works.
+  var API_BASE = 'https://app.temelyos.com';
+
+  var grid = document.getElementById('grid');
+  var chipsBox = document.querySelector('[data-cat="All"]').parentNode;
   var q = document.getElementById('q');
   var count = document.getElementById('count');
   var empty = document.getElementById('empty');
   var cat = 'All';
+
+  function esc(v) {
+    var d = document.createElement('div');
+    d.textContent = v == null ? '' : String(v);
+    return d.innerHTML;
+  }
+
   function apply() {
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.mcard'));
     var query = q.value.toLowerCase();
     var n = 0;
     cards.forEach(function (c) {
@@ -255,14 +267,79 @@ input:focus{border-color:#1C1B1A !important}
     count.textContent = n + (n === 1 ? ' module' : ' modules');
     empty.style.display = n ? 'none' : 'block';
   }
-  chips.forEach(function (ch) {
-    ch.addEventListener('click', function () {
-      cat = ch.getAttribute('data-cat');
-      chips.forEach(function (x) { x.classList.toggle('active', x === ch); });
-      apply();
+
+  function bindChips() {
+    var chips = Array.prototype.slice.call(chipsBox.querySelectorAll('.chip'));
+    chips.forEach(function (ch) {
+      ch.addEventListener('click', function () {
+        cat = ch.getAttribute('data-cat');
+        chips.forEach(function (x) { x.classList.toggle('active', x === ch); });
+        apply();
+      });
     });
-  });
+  }
+
+  // Alternating icon-badge palette, matching the curated cards.
+  var TEAL = 'background:#2DD4BF33;border:1.5px solid #2DD4BF;color:#2DD4BF';
+  var CHAR = 'background:#1C1B1A0F;border:1.5px solid #1C1B1A;color:#1C1B1A';
+
+  function cardHtml(m, i) {
+    var name = (m.name || m.identifier || 'Module').trim();
+    var desc = m.description || m.tagline || '';
+    var category = m.category || 'Module';
+    var letter = name.charAt(0).toUpperCase() || 'M';
+    var badge = (i % 2 === 0) ? TEAL : CHAR;
+    var ver = m.latestVersion
+      ? '<span style="font:500 10px \'IBM Plex Mono\',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">v' + esc(m.latestVersion) + '</span>'
+      : '';
+    var text = (name + ' ' + desc + ' ' + category).toLowerCase();
+    return '<div class="mcard" data-cat="' + esc(category) + '" data-text="' + esc(text) + '">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start">' +
+        '<span style="width:34px;height:34px;border-radius:9px;' + badge + ';display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600">' + esc(letter) + '</span>' + ver +
+      '</div>' +
+      '<div style="display:flex;flex-direction:column;gap:5px">' +
+        '<div style="font-weight:600;font-size:17px;letter-spacing:-.01em">' + esc(name) + '</div>' +
+        '<div style="font-size:13.5px;line-height:1.55;color:#55524C">' + esc(desc) + '</div>' +
+      '</div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">' +
+        '<span style="font:400 11.5px \'IBM Plex Mono\',monospace;color:#8A857C">' + esc(category) + '</span>' +
+        '<span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderLive(modules) {
+    grid.innerHTML = modules.map(cardHtml).join('');
+    // Rebuild the category chips from the categories actually present, so the
+    // filter always matches the live data.
+    var cats = [];
+    modules.forEach(function (m) {
+      var c = m.category || 'Module';
+      if (cats.indexOf(c) === -1) cats.push(c);
+    });
+    cats.sort();
+    var html = '<button class="chip active" data-cat="All">All</button>';
+    cats.forEach(function (c) { html += '<button class="chip" data-cat="' + esc(c) + '">' + esc(c) + '</button>'; });
+    chipsBox.innerHTML = html;
+    cat = 'All';
+    bindChips();
+    apply();
+  }
+
+  // Wire the curated fallback cards immediately so the page is fully usable even
+  // if the backend is unreachable (or hasn't published anything yet).
+  bindChips();
   q.addEventListener('input', apply);
+  apply();
+
+  // Then pull the real catalog and replace the fallback on a non-empty response.
+  fetch(API_BASE + '/api/public/marketplace')
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (modules) {
+      if (Array.isArray(modules) && modules.length) { renderLive(modules); }
+      // Empty array (or unexpected shape) → keep the curated fallback cards.
+    })
+    .catch(function () { /* backend unreachable → keep the curated fallback cards */ });
 })();
 </script>
 </body>

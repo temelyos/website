@@ -15,6 +15,7 @@ body{margin:0;background:#F6F3EE}
 .mcard{background:#FFFFFF;border:1px solid #E4DFD6;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s,box-shadow .15s}
 .mcard:hover{border-color:#1C1B1A;box-shadow:0 6px 18px rgba(28,27,26,.08)}
 input:focus{border-color:#1C1B1A !important}
+.viewbtn{font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;color:#1C1B1A;font-family:'Instrument Sans',sans-serif;padding:0}
 </style>
 </head>
 <body>
@@ -67,157 +68,14 @@ input:focus{border-color:#1C1B1A !important}
   <!-- filters + grid -->
   <div style="max-width:1080px;margin:0 auto;padding:0 48px 72px;display:flex;flex-direction:column;gap:22px;box-sizing:border-box">
     <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E0DBD1;padding-top:22px">
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="chip active" data-cat="All">All</button>
-        <button class="chip" data-cat="Support">Support</button>
-        <button class="chip" data-cat="Analytics">Analytics</button>
-        <button class="chip" data-cat="Communications">Communications</button>
-        <button class="chip" data-cat="Operations">Operations</button>
-        <button class="chip" data-cat="Sales">Sales</button>
-        <button class="chip" data-cat="Finance">Finance</button>
-      </div>
-      <div id="count" style="font-size:13px;color:#8A857C">9 modules</div>
+      <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <div id="count" style="font-size:13px;color:#8A857C"></div>
     </div>
 
-    <div id="grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+    <!-- Module cards are rendered here from the public marketplace catalog. -->
+    <div id="grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px"></div>
 
-      <div class="mcard" data-cat="Support" data-text="helpdesk ticket queues, slas, and customer threads for support teams. support">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">H</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Helpdesk</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Ticket queues, SLAs, and customer threads for support teams.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Support</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Analytics" data-text="report studio drag-and-drop dashboards and scheduled reports over tenant data. analytics">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">R</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Report Studio</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Drag-and-drop dashboards and scheduled reports over tenant data.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Analytics</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Communications" data-text="switchboard telephony, call routing, and voicemail-to-text. communications">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">S</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Switchboard</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Telephony, call routing, and voicemail-to-text.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Communications</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Operations" data-text="audit trail immutable activity log across every module and tenant. operations">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">A</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Audit Trail</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Immutable activity log across every module and tenant.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Operations</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Operations" data-text="scheduler shift planning, calendars, and resource booking. operations">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">S</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Scheduler</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Shift planning, calendars, and resource booking.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Operations</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Sales" data-text="crm lite contacts, pipelines, and follow-ups without the bloat. sales">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">C</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">CRM Lite</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Contacts, pipelines, and follow-ups without the bloat.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Sales</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Finance" data-text="invoicing quotes, invoices, and payment status synced to your accounts. finance">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">I</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Invoicing</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Quotes, invoices, and payment status synced to your accounts.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Finance</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Support" data-text="knowledge base internal articles and runbooks, searchable from every tab. support">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">K</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Knowledge Base</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Internal articles and runbooks, searchable from every tab.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Support</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-      <div class="mcard" data-cat="Operations" data-text="inventory stock levels, locations, and reorder alerts in real time. operations">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <span style="width:34px;height:34px;border-radius:9px;background:#2DD4BF33;border:1.5px solid #2DD4BF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#2DD4BF">I</span>
-          <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:transparent;color:#8A857C;border:1px solid #D8D2C7">COMMUNITY</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <div style="font-weight:600;font-size:17px;letter-spacing:-.01em">Inventory</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#55524C">Stock levels, locations, and reorder alerts in real time.</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">
-          <span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8A857C">Operations</span>
-          <span style="font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View</span>
-        </div>
-      </div>
-
-    </div>
-
+    <div id="status" style="text-align:center;padding:48px;color:#8A857C;font-size:15px">Loading modules…</div>
     <div id="empty" style="display:none;text-align:center;padding:48px;color:#8A857C;font-size:15px">No modules match your search — try the assistant and generate it instead.</div>
   </div>
 
@@ -234,36 +92,162 @@ input:focus{border-color:#1C1B1A !important}
       <a href="sign-in.html" style="color:#8A857C;text-decoration:none">Sign in</a>
     </div>
   </div>
+
+  <!-- module detail modal (populated from the catalog on View) -->
+  <div id="modal" style="display:none;position:fixed;inset:0;background:rgba(28,27,26,.55);z-index:50;align-items:center;justify-content:center;padding:24px">
+    <div style="background:#FFFFFF;border-radius:16px;max-width:720px;width:100%;max-height:85vh;overflow:auto;padding:32px;box-sizing:border-box;position:relative">
+      <button id="modalClose" aria-label="Close" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:24px;line-height:1;cursor:pointer;color:#8A857C">×</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <span id="modalIcon"></span>
+        <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE">OFFICIAL</span>
+        <span id="modalVer" style="font:400 12px 'IBM Plex Mono',monospace;color:#8A857C"></span>
+      </div>
+      <h2 id="modalTitle" style="margin:6px 0 4px;font-size:26px;font-weight:600;letter-spacing:-.02em"></h2>
+      <div id="modalTagline" style="font-size:15px;color:#55524C;margin-bottom:16px"></div>
+      <a href="sign-in.html#signup" style="display:inline-flex;align-items:center;background:#1C1B1A;color:#F6F3EE;padding:11px 22px;border-radius:99px;font-weight:600;font-size:14px;text-decoration:none;margin-bottom:20px">Get this module →</a>
+      <div id="modalShots" style="display:flex;gap:12px;overflow-x:auto;margin-bottom:18px"></div>
+      <div style="font:600 12px 'IBM Plex Mono',monospace;color:#8A857C;letter-spacing:.05em;margin-bottom:6px">ABOUT</div>
+      <div id="modalDesc" style="font-size:14.5px;line-height:1.65;color:#1C1B1A;white-space:pre-wrap"></div>
+    </div>
+  </div>
+
 </div>
 
 <script>
 (function () {
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.mcard'));
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  // The app that serves the public catalog. Not deployed yet — pending.
+  var API_ORIGIN = 'https://marketplace.temelyos.com';
+  var CATALOG_URL = API_ORIGIN + '/api/public/marketplace';
+
+  var grid = document.getElementById('grid');
+  var chipsWrap = document.getElementById('chips');
   var q = document.getElementById('q');
   var count = document.getElementById('count');
   var empty = document.getElementById('empty');
+  var status = document.getElementById('status');
+  var modal = document.getElementById('modal');
+
+  var all = [];   // fetched catalog entries, each tagged with a stable index `_i`
   var cat = 'All';
-  function apply() {
-    var query = q.value.toLowerCase();
-    var n = 0;
-    cards.forEach(function (c) {
-      var show = (cat === 'All' || c.getAttribute('data-cat') === cat) &&
-                 (!query || c.getAttribute('data-text').indexOf(query) !== -1);
-      c.style.display = show ? 'flex' : 'none';
-      if (show) n++;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
-    count.textContent = n + (n === 1 ? ' module' : ' modules');
-    empty.style.display = n ? 'none' : 'block';
   }
-  chips.forEach(function (ch) {
-    ch.addEventListener('click', function () {
-      cat = ch.getAttribute('data-cat');
-      chips.forEach(function (x) { x.classList.toggle('active', x === ch); });
-      apply();
+
+  // Catalog media fields are origin-relative paths (e.g. /api/public/marketplace/media/<id>).
+  function media(path) { return path ? API_ORIGIN + path : ''; }
+
+  function iconHtml(e, size) {
+    var s = size || 34;
+    if (e.icon) {
+      return '<img src="' + esc(media(e.icon)) + '" alt="" style="width:' + s + 'px;height:' + s +
+        'px;border-radius:9px;object-fit:cover;border:1.5px solid #E4DFD6">';
+    }
+    var letter = (e.name || '?').trim().charAt(0).toUpperCase() || '?';
+    return '<span style="width:' + s + 'px;height:' + s +
+      'px;border-radius:9px;background:#1C1B1A0F;border:1.5px solid #1C1B1A;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#1C1B1A">' +
+      esc(letter) + '</span>';
+  }
+
+  function cardHtml(e) {
+    var category = (e.categories && e.categories[0]) || '';
+    var desc = e.tagline || e.description || '';
+    return '' +
+      '<div class="mcard">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start">' +
+          iconHtml(e) +
+          '<span style="font:500 10px \'IBM Plex Mono\',monospace;letter-spacing:.06em;padding:4px 9px;border-radius:99px;background:#1C1B1A;color:#F6F3EE;border:1px solid #1C1B1A">OFFICIAL</span>' +
+        '</div>' +
+        '<div style="display:flex;flex-direction:column;gap:5px">' +
+          '<div style="font-weight:600;font-size:17px;letter-spacing:-.01em">' + esc(e.name) + '</div>' +
+          (desc ? '<div style="font-size:13.5px;line-height:1.55;color:#55524C">' + esc(desc) + '</div>' : '') +
+        '</div>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid #F0EDE6">' +
+          '<span style="font:400 11.5px \'IBM Plex Mono\',monospace;color:#8A857C">' + esc(category) + '</span>' +
+          '<button class="viewbtn" data-i="' + e._i + '">View</button>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function matches(e) {
+    var okCat = cat === 'All' || (e.categories || []).indexOf(cat) !== -1;
+    var query = q.value.toLowerCase().trim();
+    if (!query) return okCat;
+    var text = ((e.name || '') + ' ' + (e.tagline || '') + ' ' + (e.description || '') + ' ' +
+      (e.categories || []).join(' ')).toLowerCase();
+    return okCat && text.indexOf(query) !== -1;
+  }
+
+  function apply() {
+    var list = all.filter(matches);
+    grid.innerHTML = list.map(cardHtml).join('');
+    count.textContent = list.length + (list.length === 1 ? ' module' : ' modules');
+    empty.style.display = list.length ? 'none' : 'block';
+  }
+
+  function renderChips() {
+    var cats = [];
+    all.forEach(function (e) {
+      (e.categories || []).forEach(function (c) { if (cats.indexOf(c) === -1) cats.push(c); });
     });
+    cats.sort();
+    var names = ['All'].concat(cats);
+    chipsWrap.innerHTML = names.map(function (name) {
+      return '<button class="chip' + (name === cat ? ' active' : '') + '" data-cat="' + esc(name) + '">' + esc(name) + '</button>';
+    }).join('');
+  }
+
+  function openModal(e) {
+    document.getElementById('modalIcon').innerHTML = iconHtml(e, 40);
+    document.getElementById('modalVer').textContent = e.latestVersion ? 'v' + e.latestVersion : '';
+    document.getElementById('modalTitle').textContent = e.name || '';
+    document.getElementById('modalTagline').textContent = e.tagline || '';
+    document.getElementById('modalShots').innerHTML = (e.screenshots || []).map(function (p) {
+      return '<img src="' + esc(media(p)) + '" alt="" style="height:220px;max-width:100%;border-radius:10px;border:1px solid #E4DFD6;object-fit:cover">';
+    }).join('');
+    document.getElementById('modalDesc').textContent = e.description || 'No description provided yet.';
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() { modal.style.display = 'none'; }
+
+  // --- events (delegated so they survive re-render) ---
+  chipsWrap.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.chip');
+    if (!btn) return;
+    cat = btn.getAttribute('data-cat');
+    var cs = chipsWrap.querySelectorAll('.chip');
+    for (var i = 0; i < cs.length; i++) cs[i].classList.toggle('active', cs[i] === btn);
+    apply();
   });
+
+  grid.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.viewbtn');
+    if (!btn) return;
+    var e = all[Number(btn.getAttribute('data-i'))];
+    if (e) openModal(e);
+  });
+
   q.addEventListener('input', apply);
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (ev) { if (ev.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') closeModal(); });
+
+  // --- load ---
+  fetch(CATALOG_URL)
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      all = (Array.isArray(data) ? data : []).map(function (e, i) { e._i = i; return e; });
+      status.style.display = 'none';
+      renderChips();
+      apply();
+    })
+    .catch(function () {
+      status.textContent = 'Modules are unavailable right now. Please check back soon.';
+      count.textContent = '';
+    });
 })();
 </script>
 </body>

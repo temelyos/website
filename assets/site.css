@@ -25,10 +25,10 @@ body { margin: 0; background: var(--cream); font-family: var(--sans); color: var
 input:focus, textarea:focus { border-color: var(--ink) !important; }
 
 /* ---- nav ---- */
-.nav { display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; padding: 20px var(--gutter); border-bottom: 2px solid var(--ink); }
-.nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
-.nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500; flex-wrap: wrap; }
+.nav { display: flex; align-items: center; flex-wrap: wrap; row-gap: 12px;
+  gap: 24px; padding: 20px var(--gutter); border-bottom: 2px solid var(--ink); }
+.nav-brand { margin-right: auto; display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+.nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500; }
 .nav-links a:not(.btn) { color: var(--ink); text-decoration: none; }
 .nav-links a.is-active { border-bottom: 2px solid var(--teal); padding-bottom: 2px; }
 .nav-links .muted { color: var(--faint); }
@@ -142,6 +142,8 @@ input:focus, textarea:focus { border-color: var(--ink) !important; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }
 
-  .nav-links { gap: 18px; font-size: 13.5px; }
+  /* logo + Sign in stay on the top row; the section links drop below, centered */
+  .nav-cta { order: 1; }
+  .nav-links { order: 2; width: 100%; justify-content: center; gap: 22px; font-size: 13.5px; }
   .site-footer { flex-direction: column; align-items: flex-start; }
 }

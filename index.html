@@ -68,31 +68,32 @@
   <!-- module shelf sitting ON the baseline -->
   <div class="shelf">
     <div class="shelf-inner">
-      <div class="shelf-grid">
-        <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:10px 10px 0 0;border-bottom:none;padding:18px 16px 22px;display:flex;flex-direction:column;gap:8px;text-align:left">
-          <span style="width:26px;height:26px;border-radius:7px;background:#2DD4BF33;border:1.5px solid #2DD4BF"></span>
-          <span style="font-weight:600;font-size:14px">Helpdesk</span>
-          <span style="font-size:12px;color:#8A857C">Official</span>
+      <!-- Static fallback; replaced with live catalog modules on load (see script). -->
+      <div class="shelf-grid" id="shelf-grid">
+        <div class="shelf-card">
+          <span class="shelf-icon" style="background:#2DD4BF33;border-color:#2DD4BF"></span>
+          <span class="shelf-name">Helpdesk</span>
+          <span class="shelf-sub">Official</span>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:10px 10px 0 0;border-bottom:none;padding:18px 16px 22px;display:flex;flex-direction:column;gap:8px;text-align:left;margin-top:14px">
-          <span style="width:26px;height:26px;border-radius:7px;background:#1C1B1A14;border:1.5px solid #1C1B1A"></span>
-          <span style="font-weight:600;font-size:14px">Report Studio</span>
-          <span style="font-size:12px;color:#8A857C">Official</span>
+        <div class="shelf-card" style="margin-top:14px">
+          <span class="shelf-icon" style="background:#1C1B1A14;border-color:#1C1B1A"></span>
+          <span class="shelf-name">Report Studio</span>
+          <span class="shelf-sub">Official</span>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:10px 10px 0 0;border-bottom:none;padding:18px 16px 22px;display:flex;flex-direction:column;gap:8px;text-align:left;margin-top:6px">
-          <span style="width:26px;height:26px;border-radius:7px;background:#2DD4BF33;border:1.5px solid #2DD4BF"></span>
-          <span style="font-weight:600;font-size:14px">Switchboard</span>
-          <span style="font-size:12px;color:#8A857C">Community</span>
+        <div class="shelf-card" style="margin-top:6px">
+          <span class="shelf-icon" style="background:#2DD4BF33;border-color:#2DD4BF"></span>
+          <span class="shelf-name">Switchboard</span>
+          <span class="shelf-sub">Community</span>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:10px 10px 0 0;border-bottom:none;padding:18px 16px 22px;display:flex;flex-direction:column;gap:8px;text-align:left;margin-top:18px">
-          <span style="width:26px;height:26px;border-radius:7px;background:#1C1B1A14;border:1.5px solid #1C1B1A"></span>
-          <span style="font-weight:600;font-size:14px">Audit Trail</span>
-          <span style="font-size:12px;color:#8A857C">Community</span>
+        <div class="shelf-card" style="margin-top:18px">
+          <span class="shelf-icon" style="background:#1C1B1A14;border-color:#1C1B1A"></span>
+          <span class="shelf-name">Audit Trail</span>
+          <span class="shelf-sub">Community</span>
         </div>
-        <div style="background:#FFFDF9;border:1.5px dashed #2DD4BF;border-radius:10px 10px 0 0;border-bottom:none;padding:18px 16px 22px;display:flex;flex-direction:column;gap:8px;text-align:left;margin-top:10px">
+        <div class="shelf-card shelf-card--gen" style="margin-top:10px">
           <span style="font-size:16px;color:#2DD4BF">✦</span>
-          <span style="font-weight:600;font-size:14px">Yours, generated</span>
-          <span style="font-size:12px;color:#8A857C">From a prompt</span>
+          <span class="shelf-name">Yours, generated</span>
+          <span class="shelf-sub">From a prompt</span>
         </div>
       </div>
       <div style="height:12px;background:#1C1B1A;border-radius:3px"></div>
@@ -118,5 +119,57 @@
     </div>
   </div>
 </div>
+
+<script>
+// Populate the module shelf from the live marketplace catalog (same source as
+// marketplace.html). Progressive enhancement: the static shelf above stays as-is
+// if the catalog is empty or unreachable.
+(function () {
+  var API = 'https://marketplace.temelyos.com';
+  var grid = document.getElementById('shelf-grid');
+  if (!grid) return;
+  var STAGGER = [0, 14, 6, 18, 10];   // the shelf's varied resting heights
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function iconHtml(e) {
+    return e.icon
+      ? '<img class="shelf-icon" src="' + esc(API + e.icon) + '" alt="">'
+      : '<span class="shelf-icon" style="background:#2DD4BF33;border-color:#2DD4BF"></span>';
+  }
+  function cardHtml(e, i) {
+    var cat = (e.categories && e.categories[0]) || '';
+    return '<div class="shelf-card" style="margin-top:' + STAGGER[i % STAGGER.length] + 'px">' +
+      iconHtml(e) +
+      '<span class="shelf-name">' + esc(e.name) + '</span>' +
+      '<span class="shelf-sub">' + esc(cat) + '</span>' +
+    '</div>';
+  }
+  function genCard(i) {
+    return '<div class="shelf-card shelf-card--gen" style="margin-top:' + STAGGER[i % STAGGER.length] + 'px">' +
+      '<span style="font-size:16px;color:#2DD4BF">✦</span>' +
+      '<span class="shelf-name">Yours, generated</span>' +
+      '<span class="shelf-sub">From a prompt</span>' +
+    '</div>';
+  }
+
+  fetch(API + '/api/public/marketplace')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var list = Array.isArray(data) ? data : [];
+      if (!list.length) return;                        // empty -> keep the static shelf
+      for (var i = list.length - 1; i > 0; i--) {      // Fisher-Yates shuffle
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = list[i]; list[i] = list[j]; list[j] = t;
+      }
+      var picks = list.slice(0, 4);                    // up to 4 random modules
+      grid.innerHTML = picks.map(cardHtml).join('') + genCard(picks.length);
+    })
+    .catch(function () { /* unreachable -> keep the static shelf */ });
+})();
+</script>
 </body>
 </html>

@@ -71,10 +71,17 @@ input:focus, textarea:focus { border-color: var(--ink) !important; }
 .pillar-title { font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
 .pillar-body { font-size: 14.5px; line-height: 1.65; color: var(--muted); }
 
-/* ---- home: module shelf ---- */
+/* ---- home: module shelf (populated from the live catalog) ---- */
 .shelf { display: flex; flex-direction: column; align-items: center; padding: 64px var(--gutter) 80px; }
-.shelf-inner { width: 100%; max-width: 980px; display: flex; flex-direction: column; }
-.shelf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; padding: 0 8px; }
+.shelf-inner { width: fit-content; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; }
+.shelf-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 0 8px; }
+.shelf-card { width: 180px; max-width: 100%; background: var(--card); border: 1px solid var(--card-line);
+  border-radius: 10px 10px 0 0; border-bottom: none; padding: 18px 16px 22px;
+  display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.shelf-card--gen { background: #FFFDF9; border: 1.5px dashed var(--teal); border-bottom: none; }
+.shelf-icon { width: 26px; height: 26px; border-radius: 7px; display: block; object-fit: cover; border: 1.5px solid var(--card-line); }
+.shelf-name { font-weight: 600; font-size: 14px; }
+.shelf-sub { font-size: 12px; color: var(--faint); }
 
 /* ---- platform: two-column feature splits ---- */
 .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center;
@@ -133,8 +140,7 @@ input:focus, textarea:focus { border-color: var(--ink) !important; }
   .split .split-text { order: -1; }   /* keep copy above the diagram */
 
   .panels { grid-template-columns: 1fr; }
-  .shelf-grid { grid-template-columns: repeat(2, 1fr); }
-  .shelf-grid > * { margin-top: 0 !important; }
+  .shelf-card { margin-top: 0 !important; }   /* flatten the desktop stagger */
 
   .shell-mock { grid-template-columns: 1fr; min-height: 0; }
   .mini-modules { grid-template-columns: repeat(2, 1fr); }

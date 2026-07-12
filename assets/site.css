@@ -140,7 +140,9 @@ input:focus, textarea:focus { border-color: var(--ink) !important; }
   .split .split-text { order: -1; }   /* keep copy above the diagram */
 
   .panels { grid-template-columns: 1fr; }
-  .shelf-card { margin-top: 0 !important; }   /* flatten the desktop stagger */
+  /* two cards per row instead of a single stacked column */
+  .shelf-inner { width: 100%; }
+  .shelf-card { width: calc(50% - 7px); margin-top: 0 !important; }
 
   .shell-mock { grid-template-columns: 1fr; min-height: 0; }
   .mini-modules { grid-template-columns: repeat(2, 1fr); }

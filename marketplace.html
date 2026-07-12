@@ -8,45 +8,44 @@
 <meta name="description" content="Modules that plug straight into your platform — choose one, upload your own, or generate one from a prompt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-body{margin:0;background:#F6F3EE}
 .chip{padding:8px 16px;border-radius:99px;font-size:13.5px;font-weight:600;cursor:pointer;border:1.5px solid #D8D2C7;background:transparent;color:#55524C;font-family:'Instrument Sans',sans-serif}
 .chip.active{background:#1C1B1A;color:#F6F3EE;border-color:#1C1B1A}
 .mcard{background:#FFFFFF;border:1px solid #E4DFD6;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s,box-shadow .15s}
 .mcard:hover{border-color:#1C1B1A;box-shadow:0 6px 18px rgba(28,27,26,.08)}
-input:focus{border-color:#1C1B1A !important}
 .viewbtn{font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;color:#1C1B1A;font-family:'Instrument Sans',sans-serif;padding:0}
 </style>
 </head>
 <body>
-<div style="min-height:100vh;background:#F6F3EE;font-family:'Instrument Sans',sans-serif;color:#1C1B1A">
+<div class="wrap">
 
   <!-- nav -->
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:2px solid #1C1B1A">
-    <a href="index.html" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:#1C1B1A">
+  <div class="nav">
+    <a href="index.html" class="nav-brand">
       <span style="display:flex;flex-direction:column;align-items:center"><span style="width:16px;height:16px;border-radius:50%;border:2.5px solid #2DD4BF;display:block"></span><span style="width:22px;height:2.5px;background:#2DD4BF;display:block;margin-top:2px"></span></span>
       <img src="assets/wordmark-charcoal.svg" alt="Temelyos" style="height:15px;display:block">
     </a>
-    <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
-      <a href="platform.html" style="color:#1C1B1A;text-decoration:none">Platform</a>
-      <a href="marketplace.html" style="color:#1C1B1A;text-decoration:none;border-bottom:2px solid #2DD4BF;padding-bottom:2px">Marketplace</a>
-      <span style="color:#8A857C">Docs</span>
-      <a href="sign-in.html" style="background:#1C1B1A;color:#F6F3EE;padding:9px 20px;font-weight:600;font-size:13.5px;text-decoration:none">Sign in ↗</a>
+    <div class="nav-links">
+      <a href="platform.html">Platform</a>
+      <a href="marketplace.html" class="is-active">Marketplace</a>
+      <span class="muted">Docs</span>
+      <a href="sign-in.html" class="btn btn--dark btn--sm">Sign in ↗</a>
     </div>
   </div>
 
   <!-- header -->
-  <div style="padding:64px 48px 36px;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:18px;box-sizing:border-box">
-    <h1 style="margin:0;font-size:46px;line-height:1.06;font-weight:600;letter-spacing:-.025em">Marketplace</h1>
-    <p style="margin:0;font-size:16.5px;line-height:1.6;color:#55524C;max-width:600px">Modules that plug straight into your platform — wired into auth, tenants, and permissions on install. Choose one, upload your own, or generate one from a prompt.</p>
-    <div style="display:flex;gap:12px;margin-top:8px">
+  <div class="container container--wide" style="padding-top:64px;padding-bottom:36px;display:flex;flex-direction:column;gap:18px">
+    <h1 class="h1">Marketplace</h1>
+    <p class="lede" style="font-size:16.5px">Modules that plug straight into your platform — wired into auth, tenants, and permissions on install. Choose one, upload your own, or generate one from a prompt.</p>
+    <div class="search-row">
       <input id="q" placeholder="Search modules…" style="flex:1;max-width:440px;height:48px;border:1.5px solid #1C1B1A;border-radius:99px;padding:0 22px;font-size:15px;font-family:'Instrument Sans',sans-serif;background:#FFFFFF;color:#1C1B1A;outline:none">
-      <a href="sign-in.html#signup" style="display:flex;align-items:center;background:#1C1B1A;color:#F6F3EE;padding:0 24px;border-radius:99px;font-weight:600;font-size:14px;text-decoration:none">Upload a module</a>
+      <a href="sign-in.html#signup" class="btn btn--dark btn--tall" style="font-size:14px">Upload a module</a>
     </div>
   </div>
 
   <!-- generate + custom build panels -->
-  <div style="max-width:1080px;margin:0 auto;padding:0 48px 36px;display:grid;grid-template-columns:1fr 1fr;gap:16px;box-sizing:border-box">
+  <div class="container container--wide panels" style="padding-bottom:36px">
     <div style="border:1.5px dashed #2DD4BF;background:#FFFDF9;border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px">
       <span style="font-size:22px;color:#2DD4BF;flex:none">✦</span>
       <div style="flex:1;display:flex;flex-direction:column;gap:3px">
@@ -61,35 +60,35 @@ input:focus{border-color:#1C1B1A !important}
         <div style="font-weight:600;font-size:15.5px">Have bigger ideas? Let's build it together.</div>
         <div style="font-size:13.5px;color:#8A857C;line-height:1.5">Custom module development by the Temelyos team.</div>
       </div>
-      <a href="contact.html" style="border:1.5px solid #1C1B1A;color:#1C1B1A;padding:10px 22px;border-radius:99px;font-weight:600;font-size:13.5px;flex:none;text-decoration:none">Talk to us</a>
+      <a href="contact.html" class="btn btn--outline btn--sm" style="font-size:13.5px">Talk to us</a>
     </div>
   </div>
 
   <!-- filters + grid -->
-  <div style="max-width:1080px;margin:0 auto;padding:0 48px 72px;display:flex;flex-direction:column;gap:22px;box-sizing:border-box">
-    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E0DBD1;padding-top:22px">
+  <div class="container container--wide" style="padding-bottom:72px;display:flex;flex-direction:column;gap:22px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #E0DBD1;padding-top:22px;flex-wrap:wrap">
       <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
       <div id="count" style="font-size:13px;color:#8A857C"></div>
     </div>
 
     <!-- Module cards are rendered here from the public marketplace catalog. -->
-    <div id="grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px"></div>
+    <div id="grid" class="module-grid"></div>
 
     <div id="status" style="text-align:center;padding:48px;color:#8A857C;font-size:15px">Loading modules…</div>
     <div id="empty" style="display:none;text-align:center;padding:48px;color:#8A857C;font-size:15px">No modules match your search — try the assistant and generate it instead.</div>
   </div>
 
   <!-- CTA / footer -->
-  <div style="background:#1C1B1A;color:#F6F3EE;padding:56px 48px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
-    <div style="font-size:28px;font-weight:600;letter-spacing:-.02em;max-width:560px">Built something useful? Publish it.</div>
+  <div class="cta" style="padding-top:56px;padding-bottom:56px;gap:20px">
+    <div class="cta-title" style="font-size:28px">Built something useful? Publish it.</div>
     <div style="font-size:14.5px;color:#9BA6A2;max-width:480px;line-height:1.6">Publish your native module to the marketplace and reach every Temelyos workspace.</div>
-    <a href="sign-in.html#signup" style="background:#2DD4BF;color:#0A1A17;padding:13px 28px;border-radius:99px;font-weight:600;font-size:14.5px;text-decoration:none">Become a publisher</a>
-    <div style="display:flex;gap:26px;font-size:13px;color:#8A857C;margin-top:14px">
-      <a href="platform.html" style="color:#8A857C;text-decoration:none">Platform</a>
-      <a href="marketplace.html" style="color:#8A857C;text-decoration:none">Marketplace</a>
+    <a href="sign-in.html#signup" class="btn btn--teal" style="padding:13px 28px;font-size:14.5px">Become a publisher</a>
+    <div class="footer-links" style="margin-top:14px">
+      <a href="platform.html">Platform</a>
+      <a href="marketplace.html">Marketplace</a>
       <span>Docs</span>
-      <a href="contact.html" style="color:#8A857C;text-decoration:none">Contact</a>
-      <a href="sign-in.html" style="color:#8A857C;text-decoration:none">Sign in</a>
+      <a href="contact.html">Contact</a>
+      <a href="sign-in.html">Sign in</a>
     </div>
   </div>
 

@@ -8,48 +8,49 @@
 <meta name="description" content="How Temelyos works: a shell application for power users with a reusable UI kit, a backend, and a module system.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<style>body{margin:0;background:#F6F3EE}</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div style="min-height:100vh;background:#F6F3EE;font-family:'Instrument Sans',sans-serif;color:#1C1B1A" data-screen-label="Platform">
+<div class="wrap" data-screen-label="Platform">
 
   <!-- nav -->
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:2px solid #1C1B1A">
-    <a href="index.html" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:#1C1B1A">
+  <div class="nav">
+    <a href="index.html" class="nav-brand">
       <span style="display:flex;flex-direction:column;align-items:center"><span style="width:16px;height:16px;border-radius:50%;border:2.5px solid #2DD4BF;display:block"></span><span style="width:22px;height:2.5px;background:#2DD4BF;display:block;margin-top:2px"></span></span>
       <img src="assets/wordmark-charcoal.svg" alt="Temelyos" style="height:15px;display:block">
     </a>
-    <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
-      <a href="platform.html" style="color:#1C1B1A;text-decoration:none;border-bottom:2px solid #2DD4BF;padding-bottom:2px">Platform</a>
-      <a href="marketplace.html" style="color:#1C1B1A;text-decoration:none">Marketplace</a>
-      <span style="color:#8A857C">Docs</span>
-      <a href="sign-in.html" style="background:#1C1B1A;color:#F6F3EE;padding:9px 20px;font-weight:600;font-size:13.5px;text-decoration:none">Sign in ↗</a>
+    <div class="nav-links">
+      <a href="platform.html" class="is-active">Platform</a>
+      <a href="marketplace.html">Marketplace</a>
+      <span class="muted">Docs</span>
+      <a href="sign-in.html" class="btn btn--dark btn--sm">Sign in ↗</a>
     </div>
   </div>
 
   <!-- hero -->
-  <div style="padding:80px 48px 56px;max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
-    <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#8A857C">HOW TEMELYOS WORKS</div>
-    <h1 style="margin:0;font-size:54px;line-height:1.06;font-weight:600;letter-spacing:-.025em;max-width:700px">Three pieces. One platform.</h1>
-    <p style="margin:0;font-size:18px;line-height:1.6;color:#55524C;max-width:620px">A shell application for power users with a reusable UI kit, a backend, and a module system that lets anyone extend the platform — including you.</p>
+  <div class="container" style="padding-top:80px;padding-bottom:56px;display:flex;flex-direction:column;gap:20px">
+    <div class="eyebrow">HOW TEMELYOS WORKS</div>
+    <h1 class="h1 h1--lg" style="max-width:700px">Three pieces. One platform.</h1>
+    <p class="lede" style="max-width:620px">A shell application for power users with a reusable UI kit, a backend, and a module system that lets anyone extend the platform — including you.</p>
   </div>
 
-  <!-- 01 shell -->
-  <div style="max-width:980px;margin:0 auto;padding:0 48px">
-    <div style="border-top:1px solid #E0DBD1;padding:48px 0;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#2DD4BF">01 — FRONTEND</div>
-        <div style="font-size:30px;font-weight:600;letter-spacing:-.02em">Shell application</div>
+  <div class="container">
+
+    <!-- 01 shell -->
+    <div class="split">
+      <div class="split-text">
+        <div class="eyebrow eyebrow--teal">01 — FRONTEND</div>
+        <div class="section-title">Shell application</div>
         <div style="font-size:15.5px;line-height:1.65;color:#55524C">A power-user interface with a tabbed workspace. Each tab is a micro-app; the shell hosts them, routes navigation, and exposes an API so every micro-app can call the integrated AI assistant.</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Tabbed workspace</strong> — switch between tasks without losing work; every tab is a live micro-app.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Power-user UI</strong> — tree navigation, multi-tab work, keyboard-friendly. Built for people running the business.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Integrated AI assistant</strong> — every micro-app can call it via API. Model-agnostic: OpenAI, Anthropic, or any LLM, switchable with zero code changes.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Reusable UI kit</strong> — the same components that power the shell, available to your custom external UI.</span></div>
+        <div class="bullets">
+          <div class="bullet"><span class="dot"></span><span><strong>Tabbed workspace</strong> — switch between tasks without losing work; every tab is a live micro-app.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Power-user UI</strong> — tree navigation, multi-tab work, keyboard-friendly. Built for people running the business.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Integrated AI assistant</strong> — every micro-app can call it via API. Model-agnostic: OpenAI, Anthropic, or any LLM, switchable with zero code changes.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Reusable UI kit</strong> — the same components that power the shell, available to your custom external UI.</span></div>
         </div>
       </div>
       <!-- light shell mock -->
-      <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(28,27,26,.08)">
+      <div class="mock">
         <div style="display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid #EFEAE2">
           <span style="width:9px;height:9px;border-radius:50%;background:#E4DFD6"></span><span style="width:9px;height:9px;border-radius:50%;background:#E4DFD6"></span><span style="width:9px;height:9px;border-radius:50%;background:#E4DFD6"></span>
           <div style="display:flex;gap:2px;margin-left:16px">
@@ -59,7 +60,7 @@
             <span style="font:500 11px 'IBM Plex Mono',monospace;padding:6px 14px;color:#8A857C">+</span>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:140px 1fr 130px;min-height:280px">
+        <div class="shell-mock">
           <div style="border-right:1px solid #EFEAE2;padding:14px 12px;display:flex;flex-direction:column;gap:10px">
             <div style="font:500 9.5px 'IBM Plex Mono',monospace;color:#8A857C;letter-spacing:.1em">NAVIGATION</div>
             <div style="display:flex;flex-direction:column;gap:7px">
@@ -93,7 +94,7 @@
     </div>
 
     <!-- 02 core -->
-    <div style="border-top:1px solid #E0DBD1;padding:48px 0;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center">
+    <div class="split split--wide-left">
       <!-- diagram: backend + two UIs -->
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
@@ -119,60 +120,60 @@
           <div style="display:flex;gap:14px;font-size:12px;color:#9BA6A2"><span>auth</span><span>tenants</span><span>roles</span><span>real-time</span></div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#2DD4BF">02 — CORE</div>
-        <div style="font-size:30px;font-weight:600;letter-spacing:-.02em">Backend</div>
+      <div class="split-text">
+        <div class="eyebrow eyebrow--teal">02 — CORE</div>
+        <div class="section-title">Backend</div>
         <div style="font-size:15.5px;line-height:1.65;color:#55524C">Use the backend without the shell. Pair it with a custom external UI for end users while admins use the shell — one consistent product on one foundation.</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Shell API</strong> — micro-apps interact with the shell, navigation, and the assistant through a stable API.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Service–provider system</strong> — capabilities are defined as services; modules register providers that implement them, so implementations can be swapped without touching the code that consumes them.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Multi-tenant by default</strong> — data isolation is enforced at the platform level, across every query and API call.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Security built in</strong> — users, roles, hierarchical permissions, and token-based auth at every layer, not bolted on.</span></div>
+        <div class="bullets">
+          <div class="bullet"><span class="dot"></span><span><strong>Shell API</strong> — micro-apps interact with the shell, navigation, and the assistant through a stable API.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Service–provider system</strong> — capabilities are defined as services; modules register providers that implement them, so implementations can be swapped without touching the code that consumes them.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Multi-tenant by default</strong> — data isolation is enforced at the platform level, across every query and API call.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Security built in</strong> — users, roles, hierarchical permissions, and token-based auth at every layer, not bolted on.</span></div>
         </div>
       </div>
     </div>
 
     <!-- 03 modules -->
-    <div style="border-top:1px solid #E0DBD1;padding:48px 0 64px;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#2DD4BF">03 — EXTENSIBILITY</div>
-        <div style="font-size:30px;font-weight:600;letter-spacing:-.02em">Module system</div>
+    <div class="split" style="padding-bottom:64px">
+      <div class="split-text">
+        <div class="eyebrow eyebrow--teal">03 — EXTENSIBILITY</div>
+        <div class="section-title">Module system</div>
         <div style="font-size:15.5px;line-height:1.65;color:#55524C">Third parties add micro-apps and services without modifying the platform. Native modules are uploaded and run inside Temelyos; existing self-hosted apps can be mounted from anywhere, written in any language.</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Micro-apps, grouped</strong> — each item in the workspace tree is a separate micro-app, registered by a module.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">Self-hosted apps</strong> — mount existing apps written in any language, on any backend, hosted anywhere.</span></div>
-          <div style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;flex:none;position:relative;top:-2px"></span><span style="font-size:14px;line-height:1.5;color:#55524C"><strong style="color:#1C1B1A">First-class integration</strong> — no distinction between built-in modules and the ones you build.</span></div>
+        <div class="bullets">
+          <div class="bullet"><span class="dot"></span><span><strong>Micro-apps, grouped</strong> — each item in the workspace tree is a separate micro-app, registered by a module.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>Self-hosted apps</strong> — mount existing apps written in any language, on any backend, hosted anywhere.</span></div>
+          <div class="bullet"><span class="dot"></span><span><strong>First-class integration</strong> — no distinction between built-in modules and the ones you build.</span></div>
         </div>
         <a href="marketplace.html" style="color:#1C1B1A;font-weight:600;font-size:14.5px;text-decoration:underline;text-underline-offset:4px;margin-top:4px">See what's in the marketplace →</a>
       </div>
       <!-- modules diagram -->
-      <div style="display:flex;flex-direction:column;gap:0;align-items:stretch">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 6px">
+      <div style="display:flex;flex-direction:column;align-items:stretch">
+        <div class="mini-modules">
           <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:8px 8px 0 0;border-bottom:none;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font:500 9px 'IBM Plex Mono',monospace;color:#8A857C">NATIVE</span><span style="font-weight:600;font-size:13px">Helpdesk</span></div>
           <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:8px 8px 0 0;border-bottom:none;padding:14px;display:flex;flex-direction:column;gap:6px;margin-top:12px"><span style="font:500 9px 'IBM Plex Mono',monospace;color:#8A857C">NATIVE</span><span style="font-weight:600;font-size:13px">Reports</span></div>
           <div style="background:#FFFFFF;border:1px solid #E4DFD6;border-radius:8px 8px 0 0;border-bottom:none;padding:14px;display:flex;flex-direction:column;gap:6px;margin-top:4px"><span style="font:500 9px 'IBM Plex Mono',monospace;color:#8A857C">SELF-HOSTED</span><span style="font-weight:600;font-size:13px">Telephony</span></div>
           <div style="background:#FFFDF9;border:1.5px dashed #2DD4BF;border-radius:8px 8px 0 0;border-bottom:none;padding:14px;display:flex;flex-direction:column;gap:6px;margin-top:8px"><span style="font:500 9px 'IBM Plex Mono',monospace;color:#2DD4BF">✦ GENERATED</span><span style="font-weight:600;font-size:13px">Yours</span></div>
         </div>
         <div style="height:10px;background:#1C1B1A;border-radius:3px"></div>
-        <div style="color:#8A857C;margin-top:10px;font-style:italic;font-family:'Instrument Serif',serif;font-size:14px;text-align:center">native, self-hosted, or generated — all first-class</div>
+        <div class="serif-note" style="margin-top:10px;font-size:14px;text-align:center">native, self-hosted, or generated — all first-class</div>
       </div>
     </div>
   </div>
 
   <!-- CTA / footer -->
-  <div style="background:#1C1B1A;color:#F6F3EE;padding:64px 48px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
+  <div class="cta">
     <div style="display:flex;flex-direction:column;align-items:center">
       <span style="width:34px;height:34px;border-radius:50%;border:4px solid #2DD4BF;display:block"></span>
       <span style="width:48px;height:4px;background:#2DD4BF;display:block;margin-top:6px"></span>
     </div>
-    <div style="font-size:32px;font-weight:600;letter-spacing:-.02em;max-width:560px">No boilerplate. No lock-in.</div>
-    <a href="sign-in.html#signup" style="background:#2DD4BF;color:#0A1A17;padding:14px 30px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none">Create your account</a>
-    <div style="display:flex;gap:26px;font-size:13px;color:#8A857C;margin-top:18px">
-      <a href="platform.html" style="color:#8A857C;text-decoration:none">Platform</a>
-      <a href="marketplace.html" style="color:#8A857C;text-decoration:none">Marketplace</a>
+    <div class="cta-title">No boilerplate. No lock-in.</div>
+    <a href="sign-in.html#signup" class="btn btn--teal">Create your account</a>
+    <div class="footer-links" style="margin-top:18px">
+      <a href="platform.html">Platform</a>
+      <a href="marketplace.html">Marketplace</a>
       <span>Docs</span>
-      <a href="contact.html" style="color:#8A857C;text-decoration:none">Contact</a>
-      <a href="sign-in.html" style="color:#8A857C;text-decoration:none">Sign in</a>
+      <a href="contact.html">Contact</a>
+      <a href="sign-in.html">Sign in</a>
     </div>
   </div>
 </div>

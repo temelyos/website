@@ -151,7 +151,7 @@
   }
 
   function cardHtml(e) {
-    var category = (e.categories && e.categories[0]) || '';
+    var category = e.primaryCategory || (e.categories && e.categories[0]) || '';
     var desc = e.tagline || e.description || '';
     return '' +
       '<div class="mcard">' +

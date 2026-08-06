@@ -67,7 +67,7 @@
 
   <!-- filters + grid -->
   <div class="container container--wide" style="padding-bottom:72px;display:flex;flex-direction:column;gap:22px">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #E0DBD1;padding-top:22px;flex-wrap:wrap">
+    <div id="listTop" style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #E0DBD1;padding-top:22px;flex-wrap:wrap;scroll-margin-top:20px">
       <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
       <div id="count" style="font-size:13px;color:#8A857C"></div>
     </div>
@@ -256,7 +256,8 @@
     if (!btn || btn.disabled) return;
     page = Number(btn.getAttribute('data-page'));
     render();
-    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Top of the list section, so the filters and count stay in view — not the first card's edge.
+    document.getElementById('listTop').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   q.addEventListener('input', apply);

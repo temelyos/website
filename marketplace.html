@@ -12,6 +12,7 @@
 <style>
 .chip{padding:8px 16px;border-radius:99px;font-size:13.5px;font-weight:600;cursor:pointer;border:1.5px solid #D8D2C7;background:transparent;color:#55524C;font-family:'Instrument Sans',sans-serif}
 .chip.active{background:#1C1B1A;color:#F6F3EE;border-color:#1C1B1A}
+.chip:disabled{opacity:.35;cursor:default}
 .mcard{background:#FFFFFF;border:1px solid #E4DFD6;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s,box-shadow .15s}
 .mcard:hover{border-color:#1C1B1A;box-shadow:0 6px 18px rgba(28,27,26,.08)}
 .viewbtn{font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;color:#1C1B1A;font-family:'Instrument Sans',sans-serif;padding:0}
@@ -74,6 +75,8 @@
     <!-- Module cards are rendered here from the public marketplace catalog. -->
     <div id="grid" class="module-grid"></div>
 
+    <div id="pager" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"></div>
+
     <div id="status" style="text-align:center;padding:48px;color:#8A857C;font-size:15px">Loading modules…</div>
     <div id="empty" style="display:none;text-align:center;padding:48px;color:#8A857C;font-size:15px">No modules match your search — try the assistant and generate it instead.</div>
   </div>
@@ -125,9 +128,12 @@
   var empty = document.getElementById('empty');
   var status = document.getElementById('status');
   var modal = document.getElementById('modal');
+  var pager = document.getElementById('pager');
 
   var all = [];   // fetched catalog entries, each tagged with a stable index `_i`
   var cat = 'All';
+  var PAGE = 6;
+  var page = 1;
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -179,12 +185,28 @@
     return okCat && text.indexOf(query) !== -1;
   }
 
-  function apply() {
+  // ponytail: every page number is rendered — add ellipsis if the catalog ever passes ~15 pages.
+  function pagerHtml(pages) {
+    if (pages < 2) return '';
+    var html = '<button class="chip" data-page="' + (page - 1) + '"' + (page === 1 ? ' disabled' : '') + '>‹</button>';
+    for (var n = 1; n <= pages; n++) {
+      html += '<button class="chip' + (n === page ? ' active' : '') + '" data-page="' + n + '">' + n + '</button>';
+    }
+    return html + '<button class="chip" data-page="' + (page + 1) + '"' + (page === pages ? ' disabled' : '') + '>›</button>';
+  }
+
+  function render() {
     var list = all.filter(matches);
-    grid.innerHTML = list.map(cardHtml).join('');
+    var pages = Math.max(1, Math.ceil(list.length / PAGE));
+    if (page > pages) page = pages;
+    grid.innerHTML = list.slice((page - 1) * PAGE, page * PAGE).map(cardHtml).join('');
     count.textContent = list.length + (list.length === 1 ? ' module' : ' modules');
     empty.style.display = list.length ? 'none' : 'block';
+    pager.innerHTML = pagerHtml(pages);
   }
+
+  // Any filter/search change starts over at page one.
+  function apply() { page = 1; render(); }
 
   function renderChips() {
     var cats = [];
@@ -227,6 +249,14 @@
     if (!btn) return;
     var e = all[Number(btn.getAttribute('data-i'))];
     if (e) openModal(e);
+  });
+
+  pager.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.chip');
+    if (!btn || btn.disabled) return;
+    page = Number(btn.getAttribute('data-page'));
+    render();
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   q.addEventListener('input', apply);

@@ -98,10 +98,16 @@ document.getElementById('form-view').addEventListener('submit', function (e) {
   btn.textContent = 'Sending…';
   err.style.display = 'none';
   fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); })
-    .then(function () { form.reset(); showForm(false); })
-    .catch(function () {
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      // a rejected submission comes back 200 with success:false, so check the body not the status
+      if (!data.success) throw new Error(data.message);
+      form.reset();
+      showForm(false);
+    })
+    .catch(function (e) {
       // ponytail: no retry — the message stays in the form so nothing typed is lost
+      console.error('contact form:', e.message);
       err.textContent = 'Something went wrong. Please email hello@temelyos.com directly.';
       err.style.display = 'block';
     })

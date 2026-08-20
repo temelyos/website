@@ -80,31 +80,31 @@
     <div class="shelf-inner">
       <!-- Static fallback; replaced with live catalog modules on load (see script). -->
       <div class="shelf-grid" id="shelf-grid">
-        <div class="shelf-card">
+        <a class="shelf-card" href="marketplace.html">
           <span class="shelf-icon" style="background:#2DD4BF33;border-color:#2DD4BF"></span>
           <span class="shelf-name">Helpdesk</span>
           <span class="shelf-sub">Official</span>
-        </div>
-        <div class="shelf-card" style="margin-top:14px">
+        </a>
+        <a class="shelf-card" href="marketplace.html" style="margin-top:14px">
           <span class="shelf-icon" style="background:#1C1B1A14;border-color:#1C1B1A"></span>
           <span class="shelf-name">Report Studio</span>
           <span class="shelf-sub">Official</span>
-        </div>
-        <div class="shelf-card" style="margin-top:6px">
+        </a>
+        <a class="shelf-card" href="marketplace.html" style="margin-top:6px">
           <span class="shelf-icon" style="background:#2DD4BF33;border-color:#2DD4BF"></span>
           <span class="shelf-name">Switchboard</span>
           <span class="shelf-sub">Community</span>
-        </div>
-        <div class="shelf-card" style="margin-top:18px">
+        </a>
+        <a class="shelf-card" href="marketplace.html" style="margin-top:18px">
           <span class="shelf-icon" style="background:#1C1B1A14;border-color:#1C1B1A"></span>
           <span class="shelf-name">Audit Trail</span>
           <span class="shelf-sub">Community</span>
-        </div>
-        <div class="shelf-card shelf-card--gen" style="margin-top:10px">
+        </a>
+        <a class="shelf-card shelf-card--gen" href="https://marketplace.temelyos.com/marketplace/builder" style="margin-top:10px">
           <span style="font-size:16px;color:#2DD4BF">✦</span>
           <span class="shelf-name">Yours, generated</span>
           <span class="shelf-sub">From a prompt</span>
-        </div>
+        </a>
       </div>
       <div style="height:12px;background:#1C1B1A;border-radius:3px"></div>
       <div class="serif-note" style="margin-top:12px;font-size:15px;text-align:center">the foundation underneath — modules on top</div>
@@ -150,20 +150,26 @@
       ? '<img class="shelf-icon" src="' + esc(API + e.icon) + '" alt="">'
       : '<span class="shelf-icon" style="background:#2DD4BF33;border-color:#2DD4BF"></span>';
   }
+  // marketplace.html opens a module's detail from this slug (see its openFromHash).
+  function slug(s) {
+    return String(s == null ? '' : s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
   function cardHtml(e, i) {
     var cat = (e.categories && e.categories[0]) || '';
-    return '<div class="shelf-card" style="margin-top:' + STAGGER[i % STAGGER.length] + 'px">' +
+    return '<a class="shelf-card" href="marketplace.html#' + esc(slug(e.name)) +
+      '" style="margin-top:' + STAGGER[i % STAGGER.length] + 'px">' +
       iconHtml(e) +
       '<span class="shelf-name">' + esc(e.name) + '</span>' +
       '<span class="shelf-sub">' + esc(cat) + '</span>' +
-    '</div>';
+    '</a>';
   }
   function genCard(i) {
-    return '<div class="shelf-card shelf-card--gen" style="margin-top:' + STAGGER[i % STAGGER.length] + 'px">' +
+    return '<a class="shelf-card shelf-card--gen" href="' + API + '/marketplace/builder' +
+      '" style="margin-top:' + STAGGER[i % STAGGER.length] + 'px">' +
       '<span style="font-size:16px;color:#2DD4BF">✦</span>' +
       '<span class="shelf-name">Yours, generated</span>' +
       '<span class="shelf-sub">From a prompt</span>' +
-    '</div>';
+    '</a>';
   }
 
   fetch(API + '/api/public/marketplace')

@@ -222,7 +222,7 @@
 
   function openModal(e) {
     document.getElementById('modalIcon').innerHTML = iconHtml(e, 40);
-    document.getElementById('modalVer').textContent = e.latestVersion ? 'v' + e.latestVersion : '';
+    document.getElementById('modalVer').textContent = e.latestVersion || '';
     document.getElementById('modalTitle').textContent = e.name || '';
     document.getElementById('modalTagline').textContent = e.tagline || '';
     document.getElementById('modalShots').innerHTML = (e.screenshots || []).map(function (p) {
@@ -233,6 +233,18 @@
   }
 
   function closeModal() { modal.style.display = 'none'; }
+
+  // Homepage shelf cards deep-link here as marketplace.html#<module-slug>.
+  function slug(s) {
+    return String(s == null ? '' : s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+  function openFromHash() {
+    var want = slug(decodeURIComponent(location.hash.slice(1)));
+    if (!want) return;
+    for (var i = 0; i < all.length; i++) {
+      if (slug(all[i].name) === want) { openModal(all[i]); return; }
+    }
+  }
 
   // --- events (delegated so they survive re-render) ---
   chipsWrap.addEventListener('click', function (ev) {
@@ -273,6 +285,7 @@
       status.style.display = 'none';
       renderChips();
       apply();
+      openFromHash();
     })
     .catch(function () {
       status.textContent = 'Modules are unavailable right now. Please check back soon.';

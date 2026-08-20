@@ -232,7 +232,11 @@
     modal.style.display = 'flex';
   }
 
-  function closeModal() { modal.style.display = 'none'; }
+  function closeModal() {
+    modal.style.display = 'none';
+    // Drop the deep-link fragment so a refresh or a share doesn't reopen the panel.
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  }
 
   // Homepage shelf cards deep-link here as marketplace.html#<module-slug>.
   function slug(s) {

@@ -17,7 +17,8 @@
   <div class="nav">
     <a href="index.html" class="nav-brand">
       <span style="display:flex;flex-direction:column;align-items:center"><span style="width:16px;height:16px;border-radius:50%;border:2.5px solid #2DD4BF;display:block"></span><span style="width:22px;height:2.5px;background:#2DD4BF;display:block;margin-top:2px"></span></span>
-      <img src="assets/logo-animated.svg" alt="Temelyos" style="height:32px;display:block">
+      <img id="nav-logo" src="assets/logo-animated.svg" alt="Temelyos" style="height:32px;display:block">
+      <script>try{sessionStorage.logoPlayed?document.getElementById("nav-logo").src="assets/logo.svg":sessionStorage.logoPlayed=1}catch(e){}</script>
     </a>
     <div class="nav-links">
       <a href="platform.html" class="is-active">Platform</a>
